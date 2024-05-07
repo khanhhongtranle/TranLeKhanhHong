@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+    postgres:
+        image: postgres:latest
+        container_name: postgres
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: 99tech
+        ports:
+            - '5432:5432'
+        volumes:
+            - postgres-db:/var/lib/postgresql/data
+
+    app:
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        container_name: app
+        restart: unless-stopped
+        environment:
+            DATABASE_URL: ${DATABASE_URL}
+        depends_on:
+            - postgres
+        ports:
+            - '3000:3000'
+
+volumes:
+    postgres-db:
