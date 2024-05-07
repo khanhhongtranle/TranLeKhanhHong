@@ -63,7 +63,7 @@ const updateBook = async (req: Request, res: Response): Promise<Response> => {
         });
         return res.status(200).json(newBook);
     }catch (e) {
-        console.log('addBook API Error: ', e);
+        console.log('updateBook API Error: ', e);
         return res.status(500).json('Internal server error');
     }
 }
@@ -89,7 +89,7 @@ const removeBook = async (req: Request, res: Response): Promise<Response> => {
         })
         return res.status(200).json(book);
     }catch (e) {
-        console.log('addBook API Error: ', e);
+        console.log('removeBook API Error: ', e);
         return res.status(500).json('Internal server error');
     }
 }
